@@ -1,0 +1,41 @@
+{
+    "name": "Calculus",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "eamodio.gitlens",
+                "streetsidesoftware.code-spell-checker",
+                "ms-python.python",
+                "ionutvmi.path-autocomplete",
+                "charliermarsh.ruff",
+                "yzhang.markdown-all-in-one",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    },
+    "features": {
+        "./zsh-plugins": {
+            "plugins": "zsh-syntax-highlighting zsh-autosuggestions",
+            "omzPlugins": "https://github.com/zsh-users/zsh-syntax-highlighting https://github.com/zsh-users/zsh-autosuggestions"
+        }
+    },
+    "mounts": [
+        "source=/mnt/drive/data,target=/mnt/data,type=bind,consistency=cached",
+        "source=projectname-bashhistory,target=/commandhistory,type=volume"
+    ],
+    "runArgs": [
+        "--gpus",
+        "all",
+        "--privileged"
+    ],
+    "capAdd": [
+        "SYS_PTRACE"
+    ],
+    "securityOpt": [
+        "seccomp=unconfined"
+    ]
+}
